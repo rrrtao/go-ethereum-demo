@@ -130,37 +130,23 @@ miner.start(1)；
 miner.stop();
 
 12、查看余额
-
+<pre><code>
 > eth.blockNumber
-
 13
-
 > eth.getBalance(user1);
-
 ReferenceError: 'user1' is not defined
-
     at <anonymous>:1:16
-    
-
 > user1 = eth.accounts[0];
-
 "0x2d5238dc81b3ce00b51baae4b00ee7c06323798d"
-
 > user2 = eth.accounts[1];
-
 "0x8799dcb8f9881cbae31c068532d2ed34dd197777"
-
 > eth.getBalance(user1);
-
 65000000000000000000
-
 > web3.fromWei(eth.getBalance(eth.accounts[0]),'ether')
-
 65
-
 > web3.fromWei(eth.getBalance(user1),'ether')
-
 65
+</code></pre>
 
 13、产生交易
 
@@ -181,7 +167,35 @@ Error: authentication needed: password or unlock
     at web3.js:5081:36
     at <anonymous>:1:1
 </code></pre>
+
+账户每隔一段时间就会被锁住
+
+<pre><code>
+> personal.unlockAccount(eth.accounts[0])
+Unlock account 0x2d5238dc81b3ce00b51baae4b00ee7c06323798d
+Passphrase: 
+true
+> eth.sendTransaction({from:eth.accounts[0],to:eth.accounts[1],value:amount})
+"0x3e1e6901e95540f9cd8eb49bd838974a564e7c6e5870f6d2ebf7a4c0db09fd6c"
+> 
+</code></pre>
+
+此时交易已经提交到区块链，返回了交易的hash，但还未被处理，这可以通过查看txpool来验证：
+
+<pre><code>
+> txpool.status
+{
+  pending: 1,
+  queued: 0
+}
+> 
+</code></pre>
  
+其中有一条pending的交易，pending表示已提交但还未被处理的交易。
+
+要使交易被处理，必须要挖矿。这里我们启动挖矿，然后等待挖到一个区块之后就停止挖矿：
+
+
  
 
 
