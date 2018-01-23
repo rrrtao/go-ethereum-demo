@@ -78,22 +78,36 @@ at block: 13 (Tue, 23 Jan 2018 10:37:52 CST)
  modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
 > 
+
 > 
 
 10、创建账户
 
 > eth.accounts
+
 []
+
 > personal.newAccount('123456');
+
 "0x2d5238dc81b3ce00b51baae4b00ee7c06323798d"
+
 > personal.newAccount('123456');
+
 "0x8799dcb8f9881cbae31c068532d2ed34dd197777"
+
 > eth.accounts
+
 ["0x2d5238dc81b3ce00b51baae4b00ee7c06323798d", "0x8799dcb8f9881cbae31c068532d2ed34dd197777"]
+
 > user1 = eth.accounts[0];
+
 "0x2d5238dc81b3ce00b51baae4b00ee7c06323798d"
+
 > user2 = eth.accounts[1];
+
 "0x8799dcb8f9881cbae31c068532d2ed34dd197777"
+
+
 > eth.getBalance(user1);
 0
 > eth.getBalance(user2);
