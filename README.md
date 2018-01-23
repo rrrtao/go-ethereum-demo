@@ -129,6 +129,62 @@ miner.start(1)；
 
 miner.stop();
 
+12、查看余额
+
+> eth.blockNumber
+
+13
+
+> eth.getBalance(user1);
+
+ReferenceError: 'user1' is not defined
+
+    at <anonymous>:1:16
+    
+
+> user1 = eth.accounts[0];
+
+"0x2d5238dc81b3ce00b51baae4b00ee7c06323798d"
+
+> user2 = eth.accounts[1];
+
+"0x8799dcb8f9881cbae31c068532d2ed34dd197777"
+
+> eth.getBalance(user1);
+
+65000000000000000000
+
+> web3.fromWei(eth.getBalance(eth.accounts[0]),'ether')
+
+65
+
+> web3.fromWei(eth.getBalance(user1),'ether')
+
+65
+
+13、产生交易
+
+> eth.getBalance(user2);
+
+0
+
+ 账户user2 为0
+ 
+ 可以通过发送一笔交易，从账户1转移5个以太币到账户2；
+<pre><code>
+> amount = web3.toWei(5,'ether')
+"5000000000000000000"
+> eth.sendTransaction({from:eth.accounts[0],to:eth.accounts[1],value:amount})
+Error: authentication needed: password or unlock
+    at web3.js:3143:20 
+    at web3.js:6347:15
+    at web3.js:5081:36
+    at <anonymous>:1:1
+</code></pre>
+ 
+ 
+
+
 
 
 
