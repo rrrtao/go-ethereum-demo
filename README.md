@@ -107,15 +107,29 @@ at block: 13 (Tue, 23 Jan 2018 10:37:52 CST)
 
 "0x8799dcb8f9881cbae31c068532d2ed34dd197777"
 
-
 > eth.getBalance(user1);
+
 0
+
 > eth.getBalance(user2);
+
 0
+
 > eth.blockNumber
+
 0
+
 > eth.coinbase
+
 "0x2d5238dc81b3ce00b51baae4b00ee7c06323798d"
+
+11、启动&停止挖矿
+
+miner.start(1)；
+
+miner.stop();
+
+
 
 
 
